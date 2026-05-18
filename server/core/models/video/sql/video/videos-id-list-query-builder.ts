@@ -827,7 +827,7 @@ export class VideosIdListQueryBuilder extends AbstractRunQuery {
     const escapedSearch = this.sequelize.escape(search)
     const escapedLikeSearch = this.sequelize.escape('%' + search + '%')
 
-    this.queryConfig = 'SET pg_trgm.word_similarity_threshold = 0.40;'
+    this.queryConfig = 'SET pg_trgm.word_similarity_threshold = 0.45;'
 
     this.cte.push(
       '"trigramSearch" AS (' +
