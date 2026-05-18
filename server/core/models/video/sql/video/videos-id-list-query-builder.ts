@@ -831,12 +831,17 @@ export class VideosIdListQueryBuilder extends AbstractRunQuery {
 
     this.cte.push(
       '"trigramSearch" AS (' +
-        '  SELECT "video"."id", ' +
-        `  word_similarity(lower(immutable_unaccent(${escapedSearch})), lower(immutable_unaccent("video"."name"))) as similarity ` +
-        '  FROM "video" ' +
-        '  WHERE lower(immutable_unaccent(' + escapedSearch + ')) <% lower(immutable_unaccent("video"."name")) OR ' +
-        '        lower(immutable_unaccent("video"."name")) LIKE lower(immutable_unaccent(' + escapedLikeSearch + '))' +
-        ')'
+      '  SELECT "video"."id", ' +
+      `  GREATEST(` +
+      `    word_similarity(lower(immutable_unaccent(${escapedSearch})), lower(immutable_unaccent("video"."name"))),` +
+      `    word_similarity(lower(immutable_unaccent(${escapedSearch})), lower(immutable_unaccent(COALESCE("video"."description", ''))))` +
+      `  ) as similarity ` +
+      '  FROM "video" ' +
+      '  WHERE lower(immutable_unaccent(' + escapedSearch + ')) <% lower(immutable_unaccent("video"."name")) OR ' +
+      '        lower(immutable_unaccent("video"."name")) LIKE lower(immutable_unaccent(' + escapedLikeSearch + ')) OR ' +
+      '        lower(immutable_unaccent(' + escapedSearch + ')) <% lower(immutable_unaccent(COALESCE("video"."description", \'\'))) OR ' +
+      '        lower(immutable_unaccent("video"."description")) LIKE lower(immutable_unaccent(' + escapedLikeSearch + '))' +
+      ')'
     )
 
     this.joins.push('LEFT JOIN "trigramSearch" ON "video"."id" = "trigramSearch"."id"')
