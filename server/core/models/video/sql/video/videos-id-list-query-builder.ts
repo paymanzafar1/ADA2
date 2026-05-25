@@ -817,37 +817,29 @@ export class VideosIdListQueryBuilder extends AbstractRunQuery {
     search?: string
   }) {
     const { search, isCount } = options
-
     if (!search) {
       if (!isCount) this.attributes.push('0 as similarity')
-
       return
     }
 
     const escapedSearch = this.sequelize.escape(search)
-    const escapedLikeSearch = this.sequelize.escape('%' + search + '%')
-
-    this.queryConfig = 'SET pg_trgm.word_similarity_threshold = 0.45;'
+    const escapedTsQuery = this.sequelize.escape(
+      search.trim().split(/\s+/).map(w => `${w}:*`).join(' & ')
+    )
 
     this.cte.push(
-      '"trigramSearch" AS (' +
+      '"ftsSearch" AS (' +
       '  SELECT "video"."id", ' +
-      `  GREATEST(` +
-      `    word_similarity(lower(immutable_unaccent(${escapedSearch})), lower(immutable_unaccent("video"."name"))),` +
-      `    word_similarity(lower(immutable_unaccent(${escapedSearch})), lower(immutable_unaccent(COALESCE("video"."description", ''))))` +
-      `  ) as similarity ` +
+      `  ts_rank("video"."searchVector", to_tsquery('simple', unaccent(${escapedTsQuery}))) as similarity ` +
       '  FROM "video" ' +
-      '  WHERE lower(immutable_unaccent(' + escapedSearch + ')) <% lower(immutable_unaccent("video"."name")) OR ' +
-      '        lower(immutable_unaccent("video"."name")) LIKE lower(immutable_unaccent(' + escapedLikeSearch + ')) OR ' +
-      '        lower(immutable_unaccent(' + escapedSearch + ')) <% lower(immutable_unaccent(COALESCE("video"."description", \'\'))) OR ' +
-      '        lower(immutable_unaccent("video"."description")) LIKE lower(immutable_unaccent(' + escapedLikeSearch + '))' +
+      `  WHERE "video"."searchVector" @@ to_tsquery('simple', unaccent(${escapedTsQuery}))` +
       ')'
     )
 
-    this.joins.push('LEFT JOIN "trigramSearch" ON "video"."id" = "trigramSearch"."id"')
+    this.joins.push('LEFT JOIN "ftsSearch" ON "video"."id" = "ftsSearch"."id"')
 
     let base = '(' +
-      '  "trigramSearch"."id" IS NOT NULL OR ' +
+      '  "ftsSearch"."id" IS NOT NULL OR ' +
       '  EXISTS (' +
       '    SELECT 1 FROM "videoTag" ' +
       '    INNER JOIN "tag" ON "tag"."id" = "videoTag"."tagId" ' +
@@ -860,10 +852,9 @@ export class VideosIdListQueryBuilder extends AbstractRunQuery {
     }
 
     base += ')'
-
     this.and.push(base)
 
-    let attribute = `COALESCE("trigramSearch"."similarity", 0)`
+    let attribute = `COALESCE("ftsSearch"."similarity", 0)`
     if (this.group) attribute = `AVG(${attribute})`
 
     if (!isCount) {
