@@ -430,6 +430,9 @@ class ServerConfigManager {
             maxLength: CONSTRAINTS_FIELDS.USERS.PASSWORD.max
           }
         }
+      },
+      advancedAuth: {
+        allowCrossAuth: CONFIG.ADVANCED_AUTH.ALLOW_CROSS_AUTH
       }
     }
   }
