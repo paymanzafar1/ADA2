@@ -461,10 +461,6 @@ export interface ServerConfig {
       }
     }
   }
-
-  advancedAuth: {
-    allowCrossAuth: boolean
-  }
 }
 
 export type HTMLServerConfig = Omit<ServerConfig, 'signup'>
