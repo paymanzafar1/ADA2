@@ -16,9 +16,6 @@
   src: url('../fonts/source-sans/WOFF2/VAR/SourceSans3VF-Italic.ttf.woff2') format('woff2');
 }
 
-Copy the fonts inside /client/src/sass/fonts/IRANYekanX 
-& Edit client/src/sass/include/_font.scss & add the followings:
-
 @font-face {
     font-family: IRANYekanX;
     font-style: normal;
