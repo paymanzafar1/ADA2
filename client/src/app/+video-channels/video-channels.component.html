@@ -27,7 +27,7 @@
       </ng-template>
 
       <ng-template #ownerTemplate>
-        <div class="owner-block">
+        <!-- <div class="owner-block">
           <div class="section-label" i18n>OWNER ACCOUNT</div>
 
           <div class="avatar-row">
@@ -52,7 +52,7 @@
           <a class="view-account peertube-button-link primary-button short mt-3" [routerLink]="getAccountUrl()" i18n>View account</a>
 
           <a class="view-account link-primary complete" [routerLink]="getAccountUrl()" i18n>View owner account</a>
-        </div>
+        </div> -->
       </ng-template>
 
       <div class="channel-avatar-row">
@@ -66,17 +66,16 @@
                 <h1>{{ videoChannel.displayName }}</h1>
               </div>
 
-              <div class="actor-handle">
+              <!-- <div class="actor-handle">
                 <span>&#64;{{ videoChannel.nameWithHost }}</span>
                 <my-copy-button
                   [value]="videoChannel.nameWithHostForced" i18n-notification notification="Handle copied"
                   title="Copy channel handle" i18n-title
                 ></my-copy-button>
-              </div>
+              </div> -->
 
               <div class="actor-counters">
-                <span i18n>{videoChannel.followersCount, plural, =0 {No subscribers} =1 {1 subscriber} other {{{ videoChannel.followersCount }} subscribers}}</span>
-
+                
                 @if (channelVideosCount !== undefined) {
                   <span class="videos-count" i18n>{channelVideosCount, plural, =0 {No videos} =1 {1 video} other {{{ channelVideosCount }} videos}}</span>
                 }

@@ -57,6 +57,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   menuSections: MenuSection[] = []
   loggedIn: boolean
+  adminUser: boolean
   moreInfoLabel = $localize`More info`
 
   private user: AuthUser
@@ -107,14 +108,56 @@ export class MenuComponent implements OnInit, OnDestroy {
   private async buildMenuSections () {
     this.menuSections = []
 
-    for (const section of [ this.buildQuickLinks(), this.buildLibraryLinks(), this.buildVideoMakerLinks(), this.buildAdminLinks() ]) {
-      if (section.links.length !== 0) {
-        this.menuSections.push(section)
+    if (this.user.username == 'root' || this.user.username == 'ada') this.adminUser = true
+    else this.adminUser = false
+
+    if (this.adminUser) {
+      for (const section of [ this.buildQuickLinks(), this.buildADALinks(), this.buildLibraryLinks(), this.buildVideoMakerLinks(), this.buildAdminLinks() ]) {
+        if (section.links.length !== 0) {
+         this.menuSections.push(section)
+        }
+      }
+    } 
+    else {
+      for (const section of [ this.buildQuickLinks(), this.buildADALinks() ]) {
+        if (section.links.length !== 0) {
+         this.menuSections.push(section)
+        }
       }
     }
 
     this.menuSections = await this.hooks.wrapObject(this.menuSections, 'common', 'filter:left-menu.links.create.result')
   }
+
+  private buildADALinks (): MenuSection {
+    const base: MenuSection = {
+      key: 'adachannels',
+      title: $localize`:@@adaMessage4:Important channels`,
+      links: [
+      ]
+    }    
+
+      base.links.push({
+        path: 'c/bankette/videos',
+        icon: 'bankette' as GlobalIconName,
+        label: $localize`:@@adaMessage5:Banket Application`
+      })
+
+      base.links.push({
+        path: 'c/banvest/videos',
+        icon: 'banket' as GlobalIconName,
+        label: $localize`:@@adaMessage6:Banvest Application`
+      })
+
+      base.links.push({
+        path: 'c/mehr_bank/videos',
+        icon: 'bank' as GlobalIconName,
+        label: $localize`:@@adaMessage7:Mehr Iran Bank`
+      })
+
+    return base
+  }
+
 
   private buildQuickLinks (): MenuSection {
     const base: MenuSection = {
@@ -130,7 +173,7 @@ export class MenuComponent implements OnInit, OnDestroy {
       ]
     }
 
-    if (this.loggedIn) {
+    if (this.loggedIn && this.adminUser) {
       base.links.push({
         path: '/videos/subscriptions',
         icon: 'subscriptions',

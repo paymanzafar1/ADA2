@@ -1,6 +1,6 @@
 <ng-template #moreInfoButton>
   <div class="more-info-btn-container">
-    <a
+    <a *ngIf="loggedIn"
       class="more-info-btn peertube-button-link peertube-button-icon mt-2 d-block ellipsis" [ngClass]="{ 'icon-only': collapsed, 'label-xl': moreInfoLabel.length > 10 }"
       routerLink="/about" i18n-title title="More info" routerLinkActive="active"
       >
@@ -104,11 +104,12 @@
 
   @if (!collapsed) {
     <div class="powered-by" class="mt-3 mx-4">
-      <div class="fs-8" i18n>
-        Platform powered by <a class="fw-bold" href="https://joinpeertube.org" target="_blank" rel="noopener noreferrer">PeerTube</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://asredanesh.com">
+      <div class="fs-8" i18n="@@adaMessage1">
+        <a class="fw-bold" target="_blank" rel="noopener noreferrer">AsreDanesh Afzar
+      <span aria-label="copyleft" class="d-inline-block" style="transform: rotateY(180deg)">&copy;</span> 2024</a>
       </div>
-
-      <a class="d-block fs-8 fw-bold" href="https://joinpeertube.org/instances" target="_blank" rel="noopener noreferrer" i18n>Discover more platforms</a>
+      </a>
     </div>
   }
 </div>

@@ -18,14 +18,11 @@
       </h5>
 
       @if (signupAllowed) {
-        <p i18n>
-          {{ instanceName }} allows registration. However, be careful to check the <a class="link-primary terms-anchor d-inline" (click)="onTermsClick($event, instanceInformation)" href="/about/instance#terms">Terms</a><a class="terms-link" target="_blank" routerLink="/about/instance">Terms</a> before creating an account.
-          You may also search for another PeerTube platform to match your exact needs at: <a class="link-primary" href="https://joinpeertube.org/instances" target="_blank" rel="noopener noreferrer">https://joinpeertube.org/instances</a>.
-        </p>
+        <p i18n="@@adaMessage6">
+          This site allows registration.</p>
       } @else {
-        <p i18n>
-          {{ instanceName }} doesn't allow for user registration. You may check the <a class="link-primary terms-anchor d-inline" (click)="onTermsClick($event, instanceInformation)" href="/about/instance#terms">Terms</a><a class="terms-link" target="_blank" routerLink="/about/instance">Terms</a> for more details or find a PeerTube platform that gives you the possibility to sign up for an account and upload your videos there.
-          Find yours among multiple platforms at: <a class="link-primary" href="https://joinpeertube.org/instances" target="_blank" rel="noopener noreferrer">https://joinpeertube.org/instances</a>.
+        <p i18n="@@adaMessage7">
+          This site doesn't allow for user registration.
         </p>
       }
     </my-alert>

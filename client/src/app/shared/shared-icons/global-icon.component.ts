@@ -100,7 +100,9 @@ const icons = {
   'user': require('../../../assets/images/feather/user.svg'),
   'grip-horizontal': require('../../../assets/images/feather/grip-horizontal.svg'),
   'calendar': require('../../../assets/images/feather/calendar.svg'),
-  'users': require('../../../assets/images/feather/users.svg')
+  'users': require('../../../assets/images/feather/users.svg'),
+  'bank': require('../../../assets/images/feather/bank.svg'),
+  'banket': require('../../../assets/images/feather/banket.svg')
 }
 
 export type GlobalIconName = keyof typeof icons

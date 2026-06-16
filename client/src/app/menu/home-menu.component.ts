@@ -34,13 +34,5 @@ export class HomeMenuComponent implements OnInit, OnDestroy {
     if (config.homepage.enabled) {
       this.menuEntries.push({ label: $localize`Home`, routerLink: '/home' })
     }
-
-    this.menuEntries.push({ label: $localize`Discover`, routerLink: '/videos/overview' })
-
-    if (this.authService.isLoggedIn()) {
-      this.menuEntries.push({ label: $localize`Subscriptions`, routerLink: '/videos/subscriptions' })
-    }
-
-    this.menuEntries.push({ label: $localize`Browse videos`, routerLink: '/videos/browse' })
   }
 }
