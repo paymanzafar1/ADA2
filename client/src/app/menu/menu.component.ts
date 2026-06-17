@@ -185,7 +185,7 @@ private buildADA2Links (): MenuSection {
       ]
     }
 
-    if (this.loggedIn && this.adminUser) {
+    if (this.loggedIn) {
       base.links.push({
         path: '/videos/subscriptions',
         icon: 'subscriptions',
