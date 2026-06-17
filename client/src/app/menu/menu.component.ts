@@ -57,7 +57,6 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   menuSections: MenuSection[] = []
   loggedIn: boolean
-  adminUser: boolean
   moreInfoLabel = $localize`More info`
 
   private user: AuthUser
@@ -107,25 +106,11 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   private async buildMenuSections () {
     this.menuSections = []
-
-    if (this.user.username == 'root' || this.user.username == 'ada') this.adminUser = true
-    else this.adminUser = false
-
-    if (this.adminUser) {
       for (const section of [ this.buildQuickLinks(), this.buildADA1Links(), this.buildADA2Links(), this.buildLibraryLinks(), this.buildVideoMakerLinks(), this.buildAdminLinks() ]) {
         if (section.links.length !== 0) {
          this.menuSections.push(section)
         }
       }
-    } 
-    else {
-      for (const section of [ this.buildQuickLinks(), this.buildADA1Links(), this.buildADA2Links(), ]) {
-        if (section.links.length !== 0) {
-         this.menuSections.push(section)
-        }
-      }
-    }
-
     this.menuSections = await this.hooks.wrapObject(this.menuSections, 'common', 'filter:left-menu.links.create.result')
   }
 
