@@ -1,7 +1,7 @@
 <form (ngSubmit)="updateDetails()" [formGroup]="form">
-  <div class="form-group">
+  <!-- <div class="form-group">
     <div class="anchor" id="video-sensitive-content-policy"></div>
-    <!-- video-sensitive-content-policy anchor -->
+    <!-- video-sensitive-content-policy anchor 
 
     <div class="form-group">
       <my-select-radio
@@ -45,7 +45,7 @@
         ></my-select-radio>
       </div>
     }
-  </div>
+  </div> -->
 
   <div class="form-group">
     <div class="anchor" id="video-languages-subtitles"></div>
@@ -64,16 +64,7 @@
 
   <ng-content select="inner-title"></ng-content>
 
-  <div class="form-group">
-    <my-peertube-checkbox inputName="p2pEnabled" formControlName="p2pEnabled" [recommended]="true" i18n-labelText labelText="Help share videos being played">
-      <ng-container ngProjectAs="description">
-        <span i18n>
-          The <a class="link-primary" href="https://docs.joinpeertube.org/admin/privacy-guide#peertube-p2p-privacy" target="_blank">sharing system</a> implies
-          that some technical information about your system (such as a public IP address) can be sent to other peers, but greatly helps to reduce server load.
-        </span>
-      </ng-container>
-    </my-peertube-checkbox>
-  </div>
+  
 
   <div class="form-group">
     <my-peertube-checkbox inputName="autoPlayVideo" formControlName="autoPlayVideo" i18n-labelText labelText="Automatically play videos">
