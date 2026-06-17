@@ -112,14 +112,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     else this.adminUser = false
 
     if (this.adminUser) {
-      for (const section of [ this.buildQuickLinks(), this.buildADALinks(), this.buildLibraryLinks(), this.buildVideoMakerLinks(), this.buildAdminLinks() ]) {
+      for (const section of [ this.buildQuickLinks(), this.buildADA1Links(), this.buildADA2Links(), this.buildLibraryLinks(), this.buildVideoMakerLinks(), this.buildAdminLinks() ]) {
         if (section.links.length !== 0) {
          this.menuSections.push(section)
         }
       }
     } 
     else {
-      for (const section of [ this.buildQuickLinks(), this.buildADALinks() ]) {
+      for (const section of [ this.buildQuickLinks(), this.buildADA1Links(), this.buildADA2Links(), ]) {
         if (section.links.length !== 0) {
          this.menuSections.push(section)
         }
@@ -129,35 +129,62 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuSections = await this.hooks.wrapObject(this.menuSections, 'common', 'filter:left-menu.links.create.result')
   }
 
-  private buildADALinks (): MenuSection {
+  private buildADA1Links (): MenuSection {
     const base: MenuSection = {
-      key: 'adachannels',
+      key: 'ada1menu',
       title: $localize`:@@adaMessage4:Important channels`,
       links: [
       ]
     }    
-
       base.links.push({
         path: 'c/bankette/videos',
         icon: 'bankette' as GlobalIconName,
         label: $localize`:@@adaMessage5:Banket Application`
       })
-
       base.links.push({
         path: 'c/banvest/videos',
         icon: 'banket' as GlobalIconName,
         label: $localize`:@@adaMessage6:Banvest Application`
       })
+    return base
+  }
 
+  Add :
+
+private buildADA1Links (): MenuSection {
+    const base: MenuSection = {
+      key: 'ada1menu',
+      title: $localize`:@@adaMessage4:Main channels`,
+      links: [
+      ]
+    }    
+      base.links.push({
+        path: 'c/bankette/videos',
+        icon: 'banket' as GlobalIconName,
+        label: $localize`:@@adaMessage5:Banket Application`
+      })
+      base.links.push({
+        path: 'c/banvest/videos',
+        icon: 'banket' as GlobalIconName,
+        label: $localize`:@@adaMessage6:Banvest Application`
+      })
+    return base
+  }
+
+private buildADA2Links (): MenuSection {
+    const base: MenuSection = {
+      key: 'ada2menu',
+      title: $localize` `,
+      links: [
+      ]
+    }    
       base.links.push({
         path: 'c/mehr_bank/videos',
         icon: 'bank' as GlobalIconName,
         label: $localize`:@@adaMessage7:Mehr Iran Bank`
       })
-
     return base
   }
-
 
   private buildQuickLinks (): MenuSection {
     const base: MenuSection = {
