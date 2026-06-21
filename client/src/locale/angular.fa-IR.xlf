@@ -2,6 +2,36 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="fa-IR">
     <body>
+	
+	  <trans-unit id="adaMessage1" datatype="html">
+        <source>AsreDanesh Afzar</source>
+       <target state="translated">شرکت عصردانش‌افزار © ۱۴۰۲</target>
+      </trans-unit>
+       <trans-unit id="adaMessage2" datatype="html">
+        <source>This site allows registration. </source>
+        <target state="translated"> امکان ثبت‌نام کاربران در این سایت وجود دارد.</target>
+      </trans-unit>  
+      <trans-unit id="adaMessage3" datatype="html">
+        <source>This site doesn't allow for user registration. </source>
+        <target state="translated"> امکان ثبت‌نام کاربران در این سایت وجود ندارد.</target>
+      </trans-unit>
+       <trans-unit id="adaMessage4" datatype="html">
+        <source>Main channels</source>
+        <target state="translated">کانال‌های اصلی</target>
+      </trans-unit>  
+      <trans-unit id="adaMessage5" datatype="html">
+        <source>Banket Application</source>
+        <target state="translated">اپلیکیشن بانکت</target>
+      </trans-unit>
+      <trans-unit id="adaMessage6" datatype="html">
+        <source>Banvest Application</source>
+        <target state="translated">اپلیکیشن بان‌وِست</target>
+      </trans-unit>
+       <trans-unit id="adaMessage7" datatype="html">
+        <source>Mehr Iran Bank</source>
+        <target state="translated">بانک قرض‌الحسنه مهر ایران</target>
+
+	
       <trans-unit id="ngb.alert.close" datatype="html">
         <source>Close</source>
         <target state="translated">بستن‮</target>
