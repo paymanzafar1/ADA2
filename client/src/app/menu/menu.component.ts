@@ -114,28 +114,6 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuSections = await this.hooks.wrapObject(this.menuSections, 'common', 'filter:left-menu.links.create.result')
   }
 
-  private buildADA1Links (): MenuSection {
-    const base: MenuSection = {
-      key: 'ada1menu',
-      title: $localize`:@@adaMessage4:Important channels`,
-      links: [
-      ]
-    }    
-      base.links.push({
-        path: 'c/bankette/videos',
-        icon: 'bankette' as GlobalIconName,
-        label: $localize`:@@adaMessage5:Banket Application`
-      })
-      base.links.push({
-        path: 'c/banvest/videos',
-        icon: 'banket' as GlobalIconName,
-        label: $localize`:@@adaMessage6:Banvest Application`
-      })
-    return base
-  }
-
-  Add :
-
 private buildADA1Links (): MenuSection {
     const base: MenuSection = {
       key: 'ada1menu',
