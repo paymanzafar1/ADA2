@@ -12,27 +12,27 @@
     <!-- base url -->
     <base href="/">
 
-<script type='text/javascript'>
-var Countly = Countly || {};
-Countly.q = Countly.q || [];
+    <script type='text/javascript'>
+    var Countly = Countly || {};
+    Countly.q = Countly.q || [];
 
-// server credentials 
-Countly.app_key = "f99f1a397e2bc409c30ec1326530f3b7a5372ca8"; 
-Countly.url = "https://analytics.asr24.com";
+    // server credentials 
+    Countly.app_key = "f99f1a397e2bc409c30ec1326530f3b7a5372ca8"; 
+    Countly.url = "https://analytics.asr24.com";
 
-// Track sessions and page views automatically (recommended)
-Countly.q.push(['track_sessions']);
-Countly.q.push(['track_pageview']);
+    // Track sessions and page views automatically (recommended)
+    Countly.q.push(['track_sessions']);
+    Countly.q.push(['track_pageview']);
 
-// Load Countly script asynchronously
-(function() {
-  var cly = document.createElement('script'); cly.type = 'text/javascript';
-  cly.async = true;
-  cly.src = 'https://analytics.asr24.com/sdk/web/countly.min.js';
-  cly.onload = function(){Countly.init()};
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
-})();
-</script>
+/   / Load Countly script asynchronously
+    (function() {
+     var cly = document.createElement('script'); cly.type = 'text/javascript';
+      cly.async = true;
+      cly.src = 'https://analytics.asr24.com/sdk/web/countly.min.js';
+     cly.onload = function(){Countly.init()};
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+    })();
+    </script>
 
 
     <!-- /!\ The following comment is used by the server to prerender some tags /!\ -->
@@ -48,6 +48,55 @@ Countly.q.push(['track_pageview']);
 
   <!-- 3. Display the application -->
   <body id="custom-css">
+
+    <noscript class="alert alert-light">
+      <h2 class="mb-3">JavaScript required</h2>
+
+      <p>It seems JavaScript is either blocked or disabled in your web browser. We totally get that. However, this page will not work without it.</p>
+      <p>If you are concerned about the security and privacy (or lack thereof) of JavaScript web applications, you might want to review the source code of the instance you are trying to access, or look for security audits.</p>
+
+      <hr>
+
+      <h2 class="mb-3">Your options</h2>
+
+    </noscript>
+
+    <div id="incompatible-browser" class="alert alert-light" role="alert" style="display: none">
+      <h2 class="mb-3">Incompatible browser</h2>
+
+      <p>We are sorry but it seems that PeerTube is not compatible with your web browser.</p>
+
+      <hr>
+      <p>Please try with the latest version of <a class="link-primary" href="https://www.mozilla.org" target="_blank">Mozilla Firefox</a>.</p>
+      <p class="mb-0">If you think this is a mistake, please <a class="link-primary" href="https://github.com/Chocobozzz/PeerTube/issues/new" target="_blank">report it</a>.</p>
+    </div>
+
+    <script type="text/javascript">
+      function displayIncompatibleBrowser () {
+        var elem = document.getElementById('incompatible-browser')
+        if (elem.className.indexOf('browser-ok') === -1) {
+          elem.style.display = 'block'
+        }
+      }
+
+      window.onerror = function () {
+        displayIncompatibleBrowser()
+      }
+
+      if (/MSIE|Trident/.test(window.navigator.userAgent) ) {
+        displayIncompatibleBrowser()
+      }
+
+      // BigInt must be supported (for the player to work)
+      try {
+        BigInt(9007199254740991)
+      } catch (err) {
+        console.error('BigInt is not supported on this web browser')
+
+        displayIncompatibleBrowser()
+      }
+    </script>
+
     <my-app>
     </my-app>
 
