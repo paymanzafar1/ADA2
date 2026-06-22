@@ -30,6 +30,7 @@
        <trans-unit id="adaMessage7" datatype="html">
         <source>Mehr Iran Bank</source>
         <target state="translated">بانک قرض‌الحسنه مهر ایران</target>
+      </trans-unit>
 
 	
       <trans-unit id="ngb.alert.close" datatype="html">
