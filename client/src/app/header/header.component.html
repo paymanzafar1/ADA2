@@ -18,9 +18,6 @@
     }
   </a>
 
-  @if (!searchHidden) {
-    <my-search-typeahead [hidden]="!isLoaded()"></my-search-typeahead>
-  }
 
   <div class="d-flex align-items-center buttons-container" [hidden]="!isLoaded()">
     @if (!loggedIn) {
