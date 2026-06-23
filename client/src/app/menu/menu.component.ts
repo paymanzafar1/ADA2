@@ -144,7 +144,7 @@ private buildADA2Links (): MenuSection {
       base.links.push({
         path: 'c/mehr_bank/videos',
         icon: 'bank' as GlobalIconName,
-        label: $localize`:@@adaMessage7:Mehr Iran Bank`
+        label: $localize`:@@adaMessage7:Mehr Iran Mobile Application`
       })
     return base
   }
