@@ -122,7 +122,7 @@ private buildADA1Links (): MenuSection {
       ]
     }    
       base.links.push({
-        path: 'c/bankette/videos',
+        path: 'c/banket/videos',
         icon: 'banket' as GlobalIconName,
         label: $localize`:@@adaMessage5:Banket Application`
       })
