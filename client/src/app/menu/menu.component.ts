@@ -1,5 +1,5 @@
-import { CommonModule, NgTemplateOutlet } from '@angular/common'
-import { Component, inject, OnDestroy, OnInit } from '@angular/core'
+import { CommonModule, getLocaleDirection, NgTemplateOutlet } from '@angular/common'
+import { Component, inject, LOCALE_ID, OnDestroy, OnInit } from '@angular/core'
 import { Params, RouterLink, RouterLinkActive } from '@angular/router'
 import { AuthService, AuthStatus, AuthUser, HooksService, MenuService, RedirectService, ServerService, UserService } from '@app/core'
 import { GlobalIconComponent, GlobalIconName } from '@app/shared/shared-icons/global-icon.component'
@@ -50,6 +50,7 @@ const debugLogger = debug('peertube:menu:MenuComponent')
 export class MenuComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService)
   private userService = inject(UserService)
+  private localeId = inject(LOCALE_ID)
   private serverService = inject(ServerService)
   private hooks = inject(HooksService)
   private menu = inject(MenuService)
@@ -305,4 +306,9 @@ private buildADA2Links (): MenuSection {
         this.buildMenuSections()
       })
   }
+
+  isRTL () {
+    return getLocaleDirection(this.localeId) === 'rtl'
+  }
+
 }
